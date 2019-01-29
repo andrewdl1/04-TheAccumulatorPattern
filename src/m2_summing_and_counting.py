@@ -28,7 +28,7 @@ def main():
     """ Calls the   TEST   functions in this module. """
     run_test_sum_more_cosines()
     run_test_count_sines_from()
-    #run_test_count_sines_vs_cosines()
+    run_test_count_sines_vs_cosines()
 
 
 def run_test_sum_more_cosines():
@@ -157,7 +157,7 @@ def run_test_count_sines_from():
     # Below this comment, add 5 more test cases of your own choosing.
     # -------------------------------------------------------------------------
     # Test 2:
-    expected = 2
+    expected = 3
     answer = count_sines_from(4, 6)
     print('Test 2 expected:', expected)
     print('       actual:  ', answer)
@@ -203,20 +203,19 @@ def count_sines_from(m, n):
       -- count_sines_from(9, 9)  returns  1
     """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
     #   you must NOT use the 2 or 3-parameter versions
     #   of the RANGE expression, if you happen to know them.
     # -------------------------------------------------------------------------
-    if n <= m:
-        count = 0
-        for k in range(n - (m - 1)):
-            math.sin(k + m)
-            if math.sin(k + m) < 0.5:
-                count = count + 1
-        return count
+    count = 0
+    for k in range(n - (m - 1)):
+        math.sin(k + m)
+        if math.sin(k + m) < 0.5:
+            count = count + 1
+    return count
 
 
 def run_test_count_sines_vs_cosines():
@@ -270,6 +269,7 @@ def run_test_count_sines_vs_cosines():
     print('Test 6 expected:', expected)
     print('       actual:  ', answer)
 
+
 def count_sines_vs_cosines(m):
     """
     What comes in:  A non-negative integer m.
@@ -303,9 +303,15 @@ def count_sines_vs_cosines(m):
     #   you must NOT use the 2 or 3-parameter versions
     #   of the RANGE expression, if you happen to know them.
     # -------------------------------------------------------------------------
-
+    total = 0
+    for k in range((2 * m) + 1):
+        if math.sin((-1 * m) + k) > math.cos((-1 * m) + k):
+            total = total + 1
+    return total
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
+
+
 main()
